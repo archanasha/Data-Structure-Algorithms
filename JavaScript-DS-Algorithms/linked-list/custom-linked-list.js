@@ -81,14 +81,35 @@ class CustomLinkedList {
         }
         return currentNode;
     }
+
+    reverse() {
+        if (!this.head.next) {
+            return this.head;
+        } else {
+            let first = this.head;
+            let second = first.next;
+            this.tail = this.head;
+            while (second) {
+                const temp = second.next;
+                second.next = first;
+                first = second;
+                second = temp;
+            }
+            this.head.next = null;
+            this.head = first;
+            return this.printList();
+        }
+    }
 }
 const linkedList = new CustomLinkedList(10);
 linkedList.append(5);
 linkedList.append(21);
 linkedList.prepend(1);
 linkedList.insert(2, 33);
-linkedList.insert(12, 50);
+// linkedList.insert(12, 50);
 console.log('before remove: ', linkedList.printList());
 // linkedList.remove(0);
-linkedList.remove(2);
-console.log('after remove: ', linkedList.printList());
+// linkedList.remove(2);
+// console.log('after remove: ', linkedList.printList());
+
+console.log('reverse: ', linkedList.reverse());
