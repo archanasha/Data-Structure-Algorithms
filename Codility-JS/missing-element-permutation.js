@@ -24,8 +24,50 @@
 function solution(A) {
 
     const sortedArray = A.sort();
+    let missingElement = 0;
+    let temp = 1;
+    console.log(sortedArray);
+    if (A.length === 0) {
+        missingElement = 1;
+    } else if (A.length > 0) {
+        for (const x of sortedArray) {
+            if (x === temp) {
+                temp++;
+            } else {
+                missingElement = temp;
+            }
+        }
+    }
 
-    return sortedArray;
+    // if no missing elements inside the given array
+    if (missingElement === 0) {
+        missingElement = A[A.length - 1] + 1;
+    }
+    return missingElement;
 }
-const A = [2,3,1,5]
-console.log(solution(A));
+
+function solution1(A) {
+    let sum = 0;
+    let missingElement = 0;
+
+    if (A.length > 0) {
+
+        let N = A.length + 1;
+        for (let i = 0; i < A.length; ++i) {
+            sum += A[i];
+        }
+        missingElement = (N - 1) * N / 2 - sum;
+    } else if (A.length === 0) {
+        missingElement = 1;
+    }
+
+    // if no missing elements inside the given array
+    if (missingElement === 0) {
+        console.log('hi');
+
+        missingElement = A[A.length - 1] + 1;
+    }
+    return missingElement;
+}
+const A = [2, 3, 4, 5]
+console.log(solution1(A));

@@ -22,13 +22,13 @@ class CustomHashTable {
             this.data[hashCode] = [];
         }
         this.data[hashCode].push([key, value]);
-        return this.data;
+        // return this.data;
     }
 
     get(key) {
         const hashCode = this._hash(key);
         const currentElement = this.data[hashCode];
-        console.log('currentElement: ', currentElement);
+        // console.log('currentElement: ', currentElement);
 
         if (currentElement.length > 0){
             for(let i =0; i < currentElement.length; i++){
@@ -39,10 +39,41 @@ class CustomHashTable {
         } 
         return undefined;
     }
+
+    getElements(index){
+        const keysArray = [];
+        for (const element of this.data) {
+            if(element) {
+                if(element.length > 0) {
+                    for(const innerArr of element) {
+                        keysArray.push(innerArr[index]);
+                    }
+                } else {
+                    keysArray.push(element[index]);
+                }
+            }
+        }
+        return keysArray;
+    }
+
+    keys() {
+        return this.getElements(0);
+    }
+
+    values() {
+        return this.getElements(1);
+    }
 }
 
-const hashTable = new CustomHashTable(2);
-console.log('hash set fruits: ', hashTable.set('fruits', 1000));
-console.log('hash set veg: ', hashTable.set('veg', 10));
-console.log('hash:get ', hashTable.get('veg'));
+const hashTable = new CustomHashTable(50);
+hashTable.set('Apple', 100);
+hashTable.set('Orange', 10);
+hashTable.set('Grapes', 200);
+hashTable.set('Banana', 300);
+hashTable.set('Mangoes', 50);
+
+console.log('get Grapes Value: ', hashTable.get('Grapes'));
+console.log('keys: ', hashTable.keys());
+console.log('values: ', hashTable.values());
+
 
