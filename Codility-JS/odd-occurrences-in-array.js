@@ -50,11 +50,11 @@
 
 function solution(A) {
     let result;
-    for (let i=0; i < A.length; i++) {
-        result ^= A[i];
+    for (let i = 0; i < A.length; i++) {
+        _result ^= A[i];
     }
     return result;
 }
-A =[9,3,9,3,7,7,9];
+A = [9, 3, 9, 3, 7, 7, 9];
 // A=[1,1]
 console.log(solution(A));
