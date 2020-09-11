@@ -21,50 +21,49 @@
 // the elements of A are all distinct;
 // each element of array A is an integer within the range [1..(N + 1)].
 
-function solution(A) {
+// function solution(A) {
 
-    const sortedArray = A.sort();
-    let missingElement = 0;
-    let temp = 1;
-    console.log(sortedArray);
-    if (A.length === 0) {
-        missingElement = 1;
-    } else if (A.length > 0) {
-        for (const x of sortedArray) {
-            if (x === temp) {
-                temp++;
-            } else {
-                missingElement = temp;
-            }
-        }
-    }
+//     const sortedArray = A.sort();
+//     let missingElement = 0;
+//     let temp = 1;
+//     console.log(sortedArray);
+//     if (A.length === 0) {
+//         missingElement = 1;
+//     } else if (A.length > 0) {
+//         for (const x of sortedArray) {
+//             if (x === temp) {
+//                 temp++;
+//             } else {
+//                 missingElement = temp;
+//             }
+//         }
+//     }
 
-    // if no missing elements inside the given array
-    if (missingElement === 0) {
-        missingElement = A[A.length - 1] + 1;
-    }
-    return missingElement;
-}
+//     // if no missing elements inside the given array
+//     if (missingElement === 0) {
+//         missingElement = A[A.length - 1] + 1;
+//     }
+//     return missingElement;
+// }
 
+
+// time complexity O(n) - one traversa of array
+// space complexity O(1)
 function solution1(A) {
-    let sum = 0;
     let missingElement = 0;
 
     if (A.length > 0) {
 
-        let N = A.length + 1;
+        missingElement = (A.length + 1) * (A.length + 2) / 2;
         for (let i = 0; i < A.length; ++i) {
-            sum += A[i];
+            missingElement -= A[i];
         }
-        missingElement = (N - 1) * N / 2 - sum;
     } else if (A.length === 0) {
         missingElement = 1;
     }
 
     // if no missing elements inside the given array
     if (missingElement === 0) {
-        console.log('hi');
-
         missingElement = A[A.length - 1] + 1;
     }
     return missingElement;
